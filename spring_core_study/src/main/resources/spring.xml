@@ -11,7 +11,24 @@
  		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath:client.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="systemPropertiesMode">
+            <util:constant
+                    static-field="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        </property>
+    </bean>
 
-    <bean id="user" class="vo.User"/>
+
+    <bean id="user" class="vo.User" scope="prototype">
+       <property name="id" value="#{randomUtils.getRandomLong()}"/>
+    </bean>
+
+    <bean id="randomUtils" class="utils.RandomUtils"/>
 
 </beans>
