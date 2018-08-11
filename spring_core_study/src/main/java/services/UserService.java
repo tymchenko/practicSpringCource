@@ -1,28 +1,38 @@
 package services;
 
+import db.UserTable;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import vo.User;
 
 import java.util.List;
 
 public class UserService {
+    private UserTable userTable;
 
-    private void save(User user){
+    public UserService(){
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext(new String[] {"spring.xml"});
+        userTable = (UserTable) context.getBean("userTable");
+    }
+
+    public void save(User user){
+        userTable.save(user);
+    }
+
+    public void remove (User user){
 
     }
 
-    private void remove (User user){
-
-    }
-
-    private User getById(long id){
+    public User getById(long id){
         return null;
     }
 
-    private User getByEmail(String email){
+    public User getByEmail(String email){
         return null;
     }
 
-    private List<User> getAllUsers(){
-        return null;
+    public List<User> getAllUsers(){
+        return userTable.getAll();
     }
 }

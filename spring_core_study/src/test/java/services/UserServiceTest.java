@@ -1,6 +1,5 @@
 package services;
 
-import db.UserTable;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -13,8 +12,7 @@ class UserServiceTest {
     private int NUMBER_OF_USERS = 5;
     private static User user1;
     private static User user2;
-
-    private UserTable users = new UserTable();
+    private UserService userService = new UserService();
 
     @BeforeAll
     static void beforeTestSetup(){
@@ -32,8 +30,8 @@ class UserServiceTest {
 
     @Test
     void testSave(){
-        users.save(user1);
-        assertTrue(users.getAll().contains(user1));
+        userService.save(user1);
+        assertTrue(userService.getAllUsers().contains(user1));
     }
 
     @Test
@@ -48,6 +46,6 @@ class UserServiceTest {
 
     @Test
     void getAllUsers(){
-        assertEquals(users.getAll().size(), NUMBER_OF_USERS);
+        assertEquals(userService.getAllUsers().size(), NUMBER_OF_USERS);
     }
 }

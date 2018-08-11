@@ -29,6 +29,8 @@
        <property name="id" value="#{randomUtils.getRandomLong()}"/>
     </bean>
 
+    <bean id="userTable" class="db.UserTable" scope="singleton"/>
+
     <bean id="randomUtils" class="utils.RandomUtils"/>
 
 </beans>
