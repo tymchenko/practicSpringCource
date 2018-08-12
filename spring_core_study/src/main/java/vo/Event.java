@@ -4,6 +4,7 @@ import enams.EventRating;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Event {
     private Long id;
@@ -51,6 +52,7 @@ public class Event {
 
     public void setDates(List<Date> dates) {
         this.dates = dates;
+        dates.sort((Date d1, Date d2) -> d1.compareTo(d2));
     }
 
     public List<Date> getTime() {
@@ -59,5 +61,35 @@ public class Event {
 
     public void setTime(List<Date> time) {
         this.time = time;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return Double.compare(event.price, price) == 0 &&
+                Objects.equals(id, event.id) &&
+                Objects.equals(name, event.name) &&
+                rating == event.rating &&
+                Objects.equals(dates, event.dates) &&
+                Objects.equals(time, event.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, rating, dates, time);
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", rating=" + rating +
+                ", dates=" + dates +
+                ", time=" + time +
+                '}';
     }
 }
