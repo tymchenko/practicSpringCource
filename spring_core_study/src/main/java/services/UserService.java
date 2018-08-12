@@ -21,15 +21,16 @@ public class UserService {
     }
 
     public void remove (User user){
+        userTable.remove(user);
 
     }
 
     public User getById(long id){
-        return null;
+        return userTable.getById(id);
     }
 
     public User getByEmail(String email){
-        return null;
+        return userTable.getByEmail(email);
     }
 
     public List<User> getAllUsers(){

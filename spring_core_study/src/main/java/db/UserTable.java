@@ -14,6 +14,18 @@ public class UserTable {
         users.put(user.getId(), user);
     }
 
+    public void remove(User user){
+        users.remove(user.getId());
+    }
+
+    public User getById(Long id){
+        return users.get(id);
+    }
+
+    public User getByEmail(String email){
+        return getAll().stream().filter(i -> i.getEmail().equals(email)).findFirst().get();
+    }
+
     public List<User> getAll(){
         return users.values().stream().collect(Collectors.toList());
     }

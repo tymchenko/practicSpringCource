@@ -1,5 +1,6 @@
 package services;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -9,10 +10,11 @@ import vo.User;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
-    private int NUMBER_OF_USERS = 5;
+    private final static int NUMBER_OF_USERS = 2;
+    private final static String EMAIL = "test@test.com";
     private static User user1;
     private static User user2;
-    private UserService userService = new UserService();
+    private UserService service = new UserService();
 
     @BeforeAll
     static void beforeTestSetup(){
@@ -21,6 +23,13 @@ class UserServiceTest {
 
         user1 = (User) context.getBean("user");
         user2 = (User) context.getBean("user");
+
+        user1.setEmail(EMAIL);
+    }
+
+    @AfterEach
+    void afterTestCleanUp(){
+        service.remove(user1);
     }
 
     @Test
@@ -30,22 +39,33 @@ class UserServiceTest {
 
     @Test
     void testSave(){
-        userService.save(user1);
-        assertTrue(userService.getAllUsers().contains(user1));
+        service.save(user1);
+        assertTrue(service.getAllUsers().contains(user1));
     }
 
     @Test
-    void testRemove(User user){
-
+    void testRemove(){
+        service.save(user1);
+        service.remove(user1);
+        assertFalse(service.getAllUsers().contains(user1));
     }
 
     @Test
-    void getById(long id){
+    void testGetById(){
+        service.save(user1);
+        assertEquals(service.getById(user1.getId()), user1);
+    }
 
+    @Test
+    void testGetByEmail(){
+        service.save(user1);
+        assertEquals(service.getByEmail(user1.getEmail()), user1);
     }
 
     @Test
     void getAllUsers(){
-        assertEquals(userService.getAllUsers().size(), NUMBER_OF_USERS);
+        service.save(user1);
+        service.save(user2);
+        assertEquals(service.getAllUsers().size(), NUMBER_OF_USERS);
     }
 }
