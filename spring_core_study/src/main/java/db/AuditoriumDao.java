@@ -22,8 +22,8 @@ public class AuditoriumDao {
         return auditoriums.get(id);
     }
 
-    public Auditorium getByName(String email){
-        return getAll().stream().filter(i -> i.getName().equals(email)).findFirst().get();
+    public Auditorium getByName(String name){
+        return getAll().stream().filter(i -> i.getName().equals(name)).findFirst().get();
     }
 
     public List<Auditorium> getAll(){
