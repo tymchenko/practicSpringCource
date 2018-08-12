@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class UserTable {
+public class UserDao {
     private final Map<Long, User> users = new HashMap();
 
     public void save(User user){

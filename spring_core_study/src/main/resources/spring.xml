@@ -29,8 +29,14 @@
        <property name="id" value="#{randomUtils.getRandomLong()}"/>
     </bean>
 
-    <bean id="userTable" class="db.UserTable" scope="singleton"/>
+    <bean id="userDao" class="db.UserDao" scope="singleton"/>
 
     <bean id="randomUtils" class="utils.RandomUtils"/>
+
+    <bean id="event" class="vo.Event" scope="prototype">
+        <property name="id" value="#{randomUtils.getRandomLong()}"/>
+    </bean>
+
+    <bean id="eventDao" class="db.EventDao" scope="singleton"/>
 
 </beans>

@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class UserTableTest {
+class UserDaoTest {
     private static User user;
-    private static UserTable table;
+    private static UserDao table;
     private static final String EMAIL = "test@test.com";
 
 
@@ -24,7 +24,7 @@ class UserTableTest {
 
         user = (User) context.getBean("user");
         user.setEmail(EMAIL);
-        table = (UserTable) context.getBean("userTable");
+        table = (UserDao) context.getBean("userTable");
     }
 
     @AfterEach
