@@ -18,11 +18,11 @@ public class EventService {
     }
 
     public void save(Event event){
-
+        dao.save(event);
     }
 
-    public void remove(){
-
+    public void remove(Event event){
+        dao.remove(event);
     }
 
     public Event getById(Long id){
@@ -30,18 +30,18 @@ public class EventService {
     }
 
     public Event getByName(String name){
-        return null;
+        return dao.getByName(name);
     }
 
     public List<Event> getAll(){
-        return null;
+        return dao.getAll();
     }
 
     public List<Event> getForDateRange(Date from, Date to){
-        return null;
+        return dao.getForDateRange(from, to);
     }
 
     public List<Event> getNextEvents(Date to){
-        return null;
+        return dao.getNextEvents(to);
     }
 }
