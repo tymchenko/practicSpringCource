@@ -3,7 +3,8 @@ package vo;
 public class Ticket {
     private Long id;
     private User user;
-    private Event events;
+    private Event event;
+    private boolean isBought;
 
     public Long getId() {
         return id;
@@ -21,11 +22,19 @@ public class Ticket {
         this.user = user;
     }
 
-    public Event getEvents() {
-        return events;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setEvents(Event events) {
-        this.events = events;
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public boolean isBought() {
+        return isBought;
+    }
+
+    public void setBought(boolean bought) {
+        isBought = bought;
     }
 }
