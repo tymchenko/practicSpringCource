@@ -1,9 +1,11 @@
 package vo;
 
+import java.util.Date;
+
 public class Ticket {
     private Long id;
-    private User user;
     private Event event;
+    private Date date;
     private boolean isBought;
 
     public Long getId() {
@@ -14,20 +16,20 @@ public class Ticket {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Event getEvent() {
         return event;
     }
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public boolean isBought() {
