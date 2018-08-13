@@ -36,6 +36,8 @@
 
     <bean id="event" class="vo.Event" scope="prototype">
         <property name="id" value="#{randomUtils.getRandomLong()}"/>
+        <property name="price" value="${price}"/>
+        <property name="vipPrice" value="${vip_price}"/>
     </bean>
 
     <bean id="eventDao" class="db.EventDao" scope="singleton"/>

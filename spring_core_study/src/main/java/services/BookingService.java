@@ -1,10 +1,10 @@
 package services;
 
+import vo.Booking;
 import vo.Event;
 import vo.Ticket;
 import vo.User;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,35 +13,35 @@ public class BookingService {
     private double vipTicketPrice;
 
 
-    public List<String> getTicketsPrice(Event event, Date dateTime, User user, List <Integer> seats){
-        return null;
+    public Double getTicketsPrice(Booking booking) {
+        return booking.getTotalPrice();
     }
 
-    public int calculateDiscount(User user){
+    public int calculateDiscount(User user) {
         return 0;
     }
 
-    public int getCost(){
+    public int getCost() {
         return 0;
     }
 
-    public int getVipCost(){
+    public int getVipCost() {
         return getCost() * 2;
     }
 
-    public Map<Event, Integer> getAllPrices(){
+    public Map<Event, Integer> getAllPrices() {
         return null;
     }
 
-    public void bookTickets(List<Ticket> tickets){
+    public void bookTickets(List<Ticket> tickets) {
 
     }
 
-    public void bookTicket(Ticket ticket){
+    public void bookTicket(Ticket ticket) {
 
     }
 
-    public Map<User, Ticket> getBookedTickets(Event event){
+    public Map<User, Ticket> getBookedTickets(Event event) {
         return null;
     }
 
@@ -53,11 +53,11 @@ public class BookingService {
         this.vipTicketPrice = Double.parseDouble(vipTicketPrice);
     }
 
-    public double getTicketPrice() {
+    public Double getTicketPrice() {
         return ticketPrice;
     }
 
-    public double getVipTicketPrice() {
+    public Double getVipTicketPrice() {
         return vipTicketPrice;
     }
 }

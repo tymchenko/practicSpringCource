@@ -21,4 +21,8 @@ public class Booking {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
+    public Double getTotalPrice(){
+        return events.stream().mapToDouble(event -> event.getPrice()).sum();
+    }
 }

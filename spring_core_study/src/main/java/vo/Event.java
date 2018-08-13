@@ -10,6 +10,7 @@ public class Event {
     private Long id;
     private String name;
     private double price;
+    private double vipPrice;
     private EventRating rating;
     private List<Date> dates;
     private List<Date> time;
@@ -36,6 +37,14 @@ public class Event {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getVipPrice() {
+        return vipPrice;
+    }
+
+    public void setVipPrice(double vipPrice) {
+        this.vipPrice = vipPrice;
     }
 
     public EventRating getRating() {
