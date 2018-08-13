@@ -6,8 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BookingServiceTest {
 
+
+    /*
+    returns total price for buying all tickets for specified event on specific date and time for specified seats
+     */
     @Test
-    void getTickets() {
+    void getTicketsPrice() {
+
     }
 
     @Test
