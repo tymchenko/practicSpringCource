@@ -12,11 +12,12 @@
 
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <!--<property name="locations">-->
-            <!--<list>-->
-                <!--<value>classpath:client.properties</value>-->
-            <!--</list>-->
-        <!--</property>-->
+        <property name="locations">
+            <list>
+                <value>classpath:price.properties</value>
+                <value>classpath:auditorium.properties</value>
+            </list>
+        </property>
         <property name="ignoreResourceNotFound" value="true"/>
         <property name="systemPropertiesMode">
             <util:constant
@@ -44,5 +45,9 @@
     </bean>
 
     <bean id="auditoriumDao" class="db.AuditoriumDao" scope="singleton"/>
+
+    <bean id="ticket" class="vo.Ticket" scope="prototype">
+        <property name="id" value="#{randomUtils.getRandomLong()}"/>
+    </bean>
 
 </beans>
