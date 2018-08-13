@@ -1,10 +1,17 @@
 package vo;
 
-import java.util.List;
-
 public class Ticket {
+    private Long id;
     private User user;
-    private List<Event> events;
+    private Event events;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;
@@ -14,11 +21,11 @@ public class Ticket {
         this.user = user;
     }
 
-    public List<Event> getEvents() {
+    public Event getEvents() {
         return events;
     }
 
-    public void setEvents(List<Event> events) {
+    public void setEvents(Event events) {
         this.events = events;
     }
 }
