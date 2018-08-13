@@ -14,7 +14,7 @@ public class BookingService {
 
 
     public Double getTicketsPrice(Booking booking) {
-        return booking.getTotalPrice();
+        return booking.getEvents().stream().mapToDouble(event -> event.getPrice()).sum();
     }
 
     public int calculateDiscount(User user) {
@@ -25,7 +25,7 @@ public class BookingService {
         return null;
     }
 
-    public void bookTickets(List<Ticket> tickets) {
+    public void bookTickets(List<Ticket> tickets, User user) {
 
     }
 
