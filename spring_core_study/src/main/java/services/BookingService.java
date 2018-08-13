@@ -21,14 +21,6 @@ public class BookingService {
         return 0;
     }
 
-    public int getCost() {
-        return 0;
-    }
-
-    public int getVipCost() {
-        return getCost() * 2;
-    }
-
     public Map<Event, Integer> getAllPrices() {
         return null;
     }
