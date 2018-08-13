@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 public class BookingService {
+    private double ticketPrice;
+    private double vipTicketPrice;
 
-    public List<String> getTickets(Event event, Date dateTime, User user, List <Integer> seats){
+
+    public List<String> getTicketsPrice(Event event, Date dateTime, User user, List <Integer> seats){
         return null;
     }
 
@@ -40,5 +43,21 @@ public class BookingService {
 
     public Map<User, Ticket> getBookedTickets(Event event){
         return null;
+    }
+
+    public void setTicketPrice(String ticketPrice) {
+        this.ticketPrice = Double.parseDouble(ticketPrice);
+    }
+
+    public void setVipTicketPrice(String vipTicketPrice) {
+        this.vipTicketPrice = Double.parseDouble(vipTicketPrice);
+    }
+
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public double getVipTicketPrice() {
+        return vipTicketPrice;
     }
 }

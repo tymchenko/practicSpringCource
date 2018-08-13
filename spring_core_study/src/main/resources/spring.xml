@@ -50,4 +50,9 @@
         <property name="id" value="#{randomUtils.getRandomLong()}"/>
     </bean>
 
+    <bean id="bookingService" class="services.BookingService" scope="singleton">
+        <property name="ticketPrice" value="${price}"/>
+        <property name="vipTicketPrice" value="${vip_price}"/>
+    </bean>
+
 </beans>
