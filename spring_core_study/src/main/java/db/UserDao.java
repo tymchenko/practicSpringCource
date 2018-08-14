@@ -1,5 +1,6 @@
 package db;
 
+import utils.RandomUtils;
 import vo.User;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ public class UserDao {
     private final Map<Long, User> users = new HashMap();
 
     public void save(User user){
+        user.setId(new RandomUtils().getRandomLong());
         users.put(user.getId(), user);
     }
 
