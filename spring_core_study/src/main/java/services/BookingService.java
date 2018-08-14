@@ -1,5 +1,8 @@
 package services;
 
+import dao.BookingDao;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import vo.Booking;
 import vo.Event;
 import vo.Ticket;
@@ -9,14 +12,16 @@ import java.util.List;
 import java.util.Map;
 
 public class BookingService {
-    private double ticketPrice;
-    private double vipTicketPrice;
+    private BookingDao dao;
+
+    public BookingService(){
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext(new String[] {"spring.xml"});
+
+        dao = (BookingDao) context.getBean("bookingDao");
+    }
 
     public Double getTicketsPrice(Booking booking) {
-        booking.getTickets().stream()
-                .forEach(ticket -> ticket.getEvent()
-                        .setPrice(ticket.isVip() ? vipTicketPrice : ticketPrice));
-
         return booking.getTickets().stream().mapToDouble(ticket -> ticket.getEvent().getPrice()).sum();
     }
 
@@ -25,35 +30,18 @@ public class BookingService {
     }
 
     public List<Map<Event, Double>> getAllPrices(Booking booking) {
-
-        return null;
+        return dao.getAllPrices(booking);
     }
 
     public void bookTickets(List<Ticket> tickets, User user) {
-
+        tickets.forEach(ticket -> bookTicket(ticket, user));
     }
 
-    public void bookTicket(Ticket ticket) {
+    public void bookTicket(Ticket ticket, User user) {
 
     }
 
     public Map<User, Ticket> getBookedTickets(Event event) {
-        return null;
-    }
-
-    public void setTicketPrice(String ticketPrice) {
-        this.ticketPrice = Double.parseDouble(ticketPrice);
-    }
-
-    public void setVipTicketPrice(String vipTicketPrice) {
-        this.vipTicketPrice = Double.parseDouble(vipTicketPrice);
-    }
-
-    public Double getTicketPrice() {
-        return ticketPrice;
-    }
-
-    public Double getVipTicketPrice() {
-        return vipTicketPrice;
+        return dao.getBookedTickets(event);
     }
 }
