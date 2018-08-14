@@ -29,10 +29,6 @@
 
     <bean id="eventDao" class="db.EventDao" scope="singleton"/>
 
-    <bean id="auditorium" class="vo.Auditorium" scope="prototype">
-        <property name="id" value="#{randomUtils.getRandomLong()}"/>
-    </bean>
-
     <bean id="auditoriumDao" class="db.AuditoriumDao" scope="singleton"/>
 
     <bean id="bookingService" class="services.BookingService" scope="singleton">
