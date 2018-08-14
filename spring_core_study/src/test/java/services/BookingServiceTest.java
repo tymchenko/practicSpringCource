@@ -19,7 +19,7 @@ class BookingServiceTest {
     private static final Double VIP_TICKET_PRICE = 200.0;
     private static Event event1 = new Event();
     private static Event event2 = new Event();
-    private static User user;
+    private static User user = new User();
     private static BookingService service;
     private Booking booking = new Booking();
 
@@ -29,20 +29,18 @@ class BookingServiceTest {
                 new ClassPathXmlApplicationContext(new String[] {"spring.xml"});
 
         service = (BookingService) context.getBean("bookingService");
-        user = (User) context.getBean("user");
     }
 
-    /*
-    returns total price for buying all tickets for specified event on specific date and time for specified seats
-     */
     @Test
-    void getTicketsPriceOneTicketPositive() {
-        Ticket ticket = new Ticket();
-        ticket.setDate(new Date());
-        ticket.setEvent(event1);
-
-        booking.setTickets(Arrays.asList(ticket));
+    void getTicketsPriceOneTicketVipFalse() {
+        booking.setTickets(Arrays.asList(getTestTicket(false)));
         assertEquals(TICKET_PRICE, service.getTicketsPrice(booking));
+    }
+
+    @Test
+    void getTicketsPriceOneTicketVipTrue() {
+        booking.setTickets(Arrays.asList(getTestTicket(true)));
+        assertEquals(VIP_TICKET_PRICE, service.getTicketsPrice(booking));
     }
 
     @Test
@@ -82,5 +80,14 @@ class BookingServiceTest {
     @Test
     void getTotalBookingTest(){
 
+    }
+
+    private Ticket getTestTicket(boolean isVip){
+        Ticket ticket = new Ticket();
+        ticket.setDate(new Date());
+        ticket.setEvent(event1);
+        ticket.setVip(isVip);
+
+        return ticket;
     }
 }
