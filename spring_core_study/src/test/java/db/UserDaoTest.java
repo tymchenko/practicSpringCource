@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserDaoTest {
-    private static User user;
+    private static User user = new User();
     private static UserDao table;
     private static final String EMAIL = "test@test.com";
 
@@ -22,9 +22,8 @@ class UserDaoTest {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(new String[] {"spring.xml"});
 
-        user = (User) context.getBean("user");
         user.setEmail(EMAIL);
-        table = (UserDao) context.getBean("userTable");
+        table = (UserDao) context.getBean("userDao");
     }
 
     @AfterEach
@@ -48,9 +47,8 @@ class UserDaoTest {
 
     @Test
     void getById() {
-        Long id = user.getId();
         table.save(user);
-        assertEquals(user, table.getById(id));
+        assertEquals(user, table.getById(user.getId()));
     }
 
     @Test
