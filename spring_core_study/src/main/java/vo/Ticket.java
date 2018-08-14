@@ -6,7 +6,7 @@ public class Ticket {
     private Long id;
     private Event event;
     private Date date;
-    private boolean isBought;
+    private boolean isVip;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class Ticket {
         this.date = date;
     }
 
-    public boolean isBought() {
-        return isBought;
+    public boolean isVip() {
+        return isVip;
     }
 
-    public void setBought(boolean bought) {
-        isBought = bought;
+    public void setVip(boolean vip) {
+        isVip = vip;
     }
 }
