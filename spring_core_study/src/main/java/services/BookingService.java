@@ -12,9 +12,11 @@ public class BookingService {
     private double ticketPrice;
     private double vipTicketPrice;
 
-
     public Double getTicketsPrice(Booking booking) {
-        booking.getTickets().stream().forEach(ticket -> ticket.getEvent().setPrice(ticketPrice));
+        booking.getTickets().stream()
+                .forEach(ticket -> ticket.getEvent()
+                        .setPrice(ticket.isVip() ? vipTicketPrice : ticketPrice));
+
         return booking.getTickets().stream().mapToDouble(ticket -> ticket.getEvent().getPrice()).sum();
     }
 
