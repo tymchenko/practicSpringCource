@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class EventDaoTest {
     private static final String NAME = "Test event1";
     private static final int NUMBER_OF_EVENTS = 2;
-    private static Event event1;
-    private static Event event2;
-    private static Event event3;
+    private static Event event1 = new Event();
+    private static Event event2 = new Event();
+    private static Event event3 = new Event();
     private static EventDao dao;
 
     @BeforeEach
@@ -28,9 +28,6 @@ class EventDaoTest {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext(new String[]{"spring.xml"});
 
-        event1 = (Event) context.getBean("event");
-        event2 = (Event) context.getBean("event");
-        event3 = (Event) context.getBean("event");
         dao = (EventDao) context.getBean("eventDao");
     }
 
