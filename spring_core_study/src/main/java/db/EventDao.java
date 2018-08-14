@@ -1,5 +1,6 @@
 package db;
 
+import utils.RandomUtils;
 import vo.Event;
 
 import java.util.*;
@@ -9,6 +10,7 @@ public class EventDao {
     private Map<Long, Event> events = new HashMap();
 
     public void save(Event event) {
+        event.setId(new RandomUtils().getRandomLong());
         events.put(event.getId(), event);
     }
 
