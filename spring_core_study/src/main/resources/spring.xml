@@ -25,11 +25,11 @@
         </property>
     </bean>
 
-    <bean id="userDao" class="db.UserDao" scope="singleton"/>
+    <bean id="userDao" class="dao.UserDao" scope="singleton"/>
 
-    <bean id="eventDao" class="db.EventDao" scope="singleton"/>
+    <bean id="eventDao" class="dao.EventDao" scope="singleton"/>
 
-    <bean id="auditoriumDao" class="db.AuditoriumDao" scope="singleton"/>
+    <bean id="auditoriumDao" class="dao.AuditoriumDao" scope="singleton"/>
 
     <bean id="bookingService" class="services.BookingService" scope="singleton">
         <property name="ticketPrice" value="${price}"/>

@@ -1,6 +1,6 @@
 package services;
 
-import db.AuditoriumDao;
+import dao.AuditoriumDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import vo.Auditorium;

@@ -1,6 +1,6 @@
 package services;
 
-import db.EventDao;
+import dao.EventDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import vo.Event;

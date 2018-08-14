@@ -1,6 +1,6 @@
 package services;
 
-import db.UserDao;
+import dao.UserDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import vo.User;
