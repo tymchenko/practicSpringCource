@@ -4,7 +4,9 @@ import utils.RandomUtils;
 import vo.Booking;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BookingDao {
     private double ticketPrice;
@@ -20,8 +22,14 @@ public class BookingDao {
     }
 
     public void remove(Booking booking){
-
+        bookings.remove(booking.getId());
     }
+
+    public List<Booking> getAll(){
+        return bookings.values().stream().collect(Collectors.toList());
+    }
+
+
 
     public double getTicketPrice() {
         return ticketPrice;
