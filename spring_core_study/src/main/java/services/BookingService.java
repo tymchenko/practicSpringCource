@@ -14,14 +14,16 @@ public class BookingService {
 
 
     public Double getTicketsPrice(Booking booking) {
-        return booking.getEvents().stream().mapToDouble(event -> event.getPrice()).sum();
+        booking.getTickets().stream().forEach(ticket -> ticket.getEvent().setPrice(ticketPrice));
+        return booking.getTickets().stream().mapToDouble(ticket -> ticket.getEvent().getPrice()).sum();
     }
 
     public int calculateDiscount(User user) {
         return 0;
     }
 
-    public Map<Event, Integer> getAllPrices() {
+    public List<Map<Event, Double>> getAllPrices(Booking booking) {
+
         return null;
     }
 

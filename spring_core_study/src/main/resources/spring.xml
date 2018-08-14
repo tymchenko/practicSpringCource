@@ -34,12 +34,6 @@
 
     <bean id="randomUtils" class="utils.RandomUtils"/>
 
-    <bean id="event" class="vo.Event" scope="prototype">
-        <property name="id" value="#{randomUtils.getRandomLo˚ng()}"/>
-        <property name="price" value="${price}"/>
-        <property name="vipPrice" value="${vip_price}"/>
-    </bean>
-
     <bean id="eventDao" class="db.EventDao" scope="singleton"/>
 
     <bean id="auditorium" class="vo.Auditorium" scope="prototype">
@@ -47,10 +41,6 @@
     </bean>
 
     <bean id="auditoriumDao" class="db.AuditoriumDao" scope="singleton"/>
-
-    <bean id="ticket" class="vo.Ticket" scope="prototype">
-        <property name="id" value="#{randomUtils.getRandomLong()}"/>
-    </bean>
 
     <bean id="bookingService" class="services.BookingService" scope="singleton">
         <property name="ticketPrice" value="${price}"/>

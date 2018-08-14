@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Booking {
     private User user;
-    private List<Event> events;
+    private List<Ticket> tickets;
 
     public User getUser() {
         return user;
@@ -14,11 +14,11 @@ public class Booking {
         this.user = user;
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }
