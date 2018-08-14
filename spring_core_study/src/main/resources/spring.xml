@@ -25,13 +25,7 @@
         </property>
     </bean>
 
-
-    <bean id="user" class="vo.User" scope="prototype">
-       <property name="id" value="#{randomUtils.getRandomLong()}"/>
-    </bean>
-
     <bean id="userDao" class="db.UserDao" scope="singleton"/>
-
 
     <bean id="eventDao" class="db.EventDao" scope="singleton"/>
 
