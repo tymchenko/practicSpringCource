@@ -31,7 +31,7 @@
 
     <bean id="auditoriumDao" class="dao.AuditoriumDao" scope="singleton"/>
 
-    <bean id="bookingService" class="services.BookingService" scope="singleton">
+    <bean id="bookingDao" class="services.BookingDao" scope="singleton">
         <property name="ticketPrice" value="${price}"/>
         <property name="vipTicketPrice" value="${vip_price}"/>
     </bean>

@@ -3,8 +3,17 @@ package vo;
 import java.util.List;
 
 public class Booking {
+    private Long id;
     private User user;
     private List<Ticket> tickets;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User getUser() {
         return user;
