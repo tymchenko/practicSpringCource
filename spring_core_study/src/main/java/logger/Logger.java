@@ -32,4 +32,22 @@ public class Logger {
     public List<ErrorLog> getErrors() {
         return errors;
     }
+
+    public void cleanInfo() {
+        info.clear();
+    }
+
+    public void cleanWarnings() {
+        warnings.clear();
+    }
+
+    public void cleanErrors() {
+        errors.clear();
+    }
+
+    public void clean() {
+        cleanInfo();
+        cleanWarnings();
+        cleanErrors();
+    }
 }
