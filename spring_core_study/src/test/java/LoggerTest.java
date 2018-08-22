@@ -19,17 +19,21 @@ class LoggerTest {
     void logInfo(){
         String infoLog = "Test log info";
         LOG.info(infoLog);
-        assertTrue(LOG.getInfoLogs().contains(infoLog));
+        assertTrue(LOG.getInfo().toString().contains("[INFO] " + infoLog));
     }
 
     @Test
     void logWarn(){
-
+        String warnLog = "Test log warn";
+        LOG.warn(warnLog);
+        assertTrue(LOG.getWarnings().toString().contains("[WARN] " + warnLog));
     }
 
     @Test
     void logError(){
-
+        String errorLog = "Test error warn";
+        LOG.error(errorLog);
+        assertTrue(LOG.getErrors().toString().contains("[ERROR] " + errorLog));
     }
 
     @Test

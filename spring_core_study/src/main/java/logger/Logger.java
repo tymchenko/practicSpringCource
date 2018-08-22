@@ -4,13 +4,32 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Logger {
-    private List<Log> infoLog = new LinkedList();
+    private List<InfoLog> info = new LinkedList();
+    private List<WarnLog> warnings = new LinkedList();
+    private List<ErrorLog> errors = new LinkedList();
+
 
     public void info(String message) {
-        infoLog.add(new Log(message));
+        info.add(new InfoLog(message));
     }
 
-    public List<Log> getInfoLogs() {
-        return null;
+    public List<InfoLog> getInfo() {
+        return info;
+    }
+
+    public void warn(String message) {
+        warnings.add(new WarnLog(message));
+    }
+
+    public List<WarnLog> getWarnings() {
+        return warnings;
+    }
+
+    public void error(String message) {
+        errors.add(new ErrorLog(message));
+    }
+
+    public List<ErrorLog> getErrors() {
+        return errors;
     }
 }

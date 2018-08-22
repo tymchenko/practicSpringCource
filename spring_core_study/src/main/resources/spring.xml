@@ -36,4 +36,6 @@
         <property name="vipTicketPrice" value="${vip_price}"/>
     </bean>
 
+    <bean id="logger" class="logger.Logger"/>
+
 </beans>
