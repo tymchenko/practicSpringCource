@@ -7,9 +7,9 @@ import java.util.Date;
 class Log {
     protected String message;
     protected String date;
-    protected String level;
+    protected LogLevel level;
 
-    public Log(String message, String level) {
+    public Log(String message, LogLevel level) {
         this.message = message;
         this.level = level;
         date = currentDate();
@@ -22,6 +22,6 @@ class Log {
 
     @Override
     public String toString() {
-        return String.format("%s %s %s", date, level, message);
+        return String.format("%s [%s] %s\n", date, level, message);
     }
 }

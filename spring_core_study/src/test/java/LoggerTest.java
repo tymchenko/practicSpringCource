@@ -101,10 +101,11 @@ class LoggerTest {
         assertFalse(LOG.getErrors().toString().contains("[ERROR] " + error));
     }
 
-    @Ignore
     @Test
     void saveInfoLogs(){
-
+        String infoLog = "Info log 1";
+        LOG.info(infoLog);
+        LOG.save();
     }
 
     @Ignore
