@@ -16,7 +16,7 @@ class Log {
     }
 
     private String currentDate() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
         return dateFormat.format(new Date());
     }
 
