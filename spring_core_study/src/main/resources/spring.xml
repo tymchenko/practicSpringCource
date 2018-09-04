@@ -40,6 +40,10 @@
     <bean id="logger" class="logger.Logger">
         <property name="infoLogDirectoryPath" value="${infoDirectory}"/>
         <property name="infoLogFileName" value="${infoName}"/>
+        <property name="warnLogDirectoryPath" value="${warnDirectory}"/>
+        <property name="warnLogFileName" value="${warnName}"/>
+        <property name="errorLogDirectoryPath" value="${errorDirectory}"/>
+        <property name="errorLogFileName" value="${errorName}"/>
     </bean>
 
 </beans>

@@ -16,6 +16,10 @@ public class Logger implements Savable{
     private List<ErrorLog> errors = new LinkedList();
     private String infoLogDirectoryPath;
     private String infoLogFileName;
+    private String warnLogDirectoryPath;
+    private String warnLogFileName;
+    private String errorLogDirectoryPath;
+    private String errorLogFileName;
 
     public void setInfoLogDirectoryPath(String infoLogDirectoryPath) {
         this.infoLogDirectoryPath = infoLogDirectoryPath;
@@ -23,6 +27,22 @@ public class Logger implements Savable{
 
     public void setInfoLogFileName(String infoLogFileName) {
         this.infoLogFileName = infoLogFileName;
+    }
+
+    public void setWarnLogDirectoryPath(String warnLogDirectoryPath) {
+        this.warnLogDirectoryPath = warnLogDirectoryPath;
+    }
+
+    public void setWarnLogFileName(String warnLogFileName) {
+        this.warnLogFileName = warnLogFileName;
+    }
+
+    public void setErrorLogDirectoryPath(String errorLogDirectoryPath) {
+        this.errorLogDirectoryPath = errorLogDirectoryPath;
+    }
+
+    public void setErrorLogFileName(String errorLogFileName) {
+        this.errorLogFileName = errorLogFileName;
     }
 
     public void info(String message) {
@@ -89,20 +109,30 @@ public class Logger implements Savable{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String infoLogDirectory = String.format("%s/%s",
-                infoLogDirectoryPath,
-                new SimpleDateFormat("dd-MM-yyyy").format(date));
+
         if(LogLevel.INFO == log.level){
-            saveLog(infoLogDirectory, log.toString());
+            saveLog(String.format("%s/%s", infoLogDirectoryPath, new SimpleDateFormat("dd-MM-yyyy").format(date)),
+                    infoLogFileName,
+                    log.toString());
+        }
+        if(LogLevel.WARN == log.level){
+            saveLog(String.format("%s/%s", warnLogDirectoryPath, new SimpleDateFormat("dd-MM-yyyy").format(date)),
+                    warnLogFileName,
+                    log.toString());
+        }
+        if(LogLevel.ERROR == log.level){
+            saveLog(String.format("%s/%s", errorLogDirectoryPath, new SimpleDateFormat("dd-MM-yyyy").format(date)),
+                    errorLogFileName,
+                    log.toString());
         }
     }
 
-    private void saveLog(String infoLogDir, String message) {
-        File directory = new File(infoLogDir);
+    private void saveLog(String logDir, String fileName, String message) {
+        File directory = new File(logDir);
         if(!directory.exists()){
             directory.mkdir();
         }
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(String.format("%s/%s", infoLogDir, infoLogFileName)))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(String.format("%s/%s", logDir, fileName)))) {
             bw.append(message);
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,10 +140,16 @@ public class Logger implements Savable{
     }
 
     private void saveWarnLog() {
-
+        for(WarnLog log : warnings){
+            saveLog(log);
+        }
+        warnings.clear();
     }
 
     private void saveErrorLog() {
-
+        for(ErrorLog log : errors){
+            saveLog(log);
+        }
+        errors.clear();
     }
 }

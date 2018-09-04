@@ -1,13 +1,10 @@
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import logger.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LoggerTest {
     private static Logger LOG;
@@ -108,15 +105,17 @@ class LoggerTest {
         LOG.save();
     }
 
-    @Ignore
     @Test
     void saveWarnLogs(){
-
+        String warnLog = "Warn log 1";
+        LOG.warn(warnLog);
+        LOG.save();
     }
 
-    @Ignore
     @Test
     void saveErrorLogs(){
-
+        String errorLog = "Error log 1";
+        LOG.error(errorLog);
+        LOG.save();
     }
 }
