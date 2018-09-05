@@ -7,19 +7,29 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Logger implements Savable{
-    private List<InfoLog> info = new LinkedList();
-    private List<WarnLog> warnings = new LinkedList();
-    private List<ErrorLog> errors = new LinkedList();
+    private InfoLog info;
+    private WarnLog warning;
+    private ErrorLog error;
     private String infoLogDirectoryPath;
     private String infoLogFileName;
     private String warnLogDirectoryPath;
     private String warnLogFileName;
     private String errorLogDirectoryPath;
     private String errorLogFileName;
+
+    public InfoLog getInfo() {
+        return info;
+    }
+
+    public WarnLog getWarning() {
+        return warning;
+    }
+
+    public ErrorLog getError() {
+        return error;
+    }
 
     public void setInfoLogDirectoryPath(String infoLogDirectoryPath) {
         this.infoLogDirectoryPath = infoLogDirectoryPath;
@@ -46,45 +56,15 @@ public class Logger implements Savable{
     }
 
     public void info(String message) {
-        info.add(new InfoLog(message));
-    }
-
-    public List<InfoLog> getInfo() {
-        return info;
+        info = new InfoLog(message);
     }
 
     public void warn(String message) {
-        warnings.add(new WarnLog(message));
-    }
-
-    public List<WarnLog> getWarnings() {
-        return warnings;
+        warning = new WarnLog(message);
     }
 
     public void error(String message) {
-        errors.add(new ErrorLog(message));
-    }
-
-    public List<ErrorLog> getErrors() {
-        return errors;
-    }
-
-    public void cleanInfo() {
-        info.clear();
-    }
-
-    public void cleanWarnings() {
-        warnings.clear();
-    }
-
-    public void cleanErrors() {
-        errors.clear();
-    }
-
-    public void clean() {
-        cleanInfo();
-        cleanWarnings();
-        cleanErrors();
+        error = new ErrorLog(message);
     }
 
     @Override
@@ -94,20 +74,13 @@ public class Logger implements Savable{
         saveErrorLog();
     }
 
-    private void saveInfoLog() {
-        for(InfoLog log: info){
-            saveLog(log);
-        }
-        info.clear();
-    }
-
     private void saveLog(Log log) {
         String logDate = log.date.substring(0, log.date.indexOf(' '));
         Date date= null;
         try {
             date = new SimpleDateFormat("dd/MM/yyyy").parse(logDate);
         } catch (ParseException e) {
-            e.printStackTrace();
+            error(e.getMessage());
         }
 
         if(LogLevel.INFO == log.level){
@@ -136,25 +109,28 @@ public class Logger implements Savable{
             File logFile = new File(String.format("%s/%s", logDir, fileName));
             FileWriter writer = new FileWriter(logFile, true);
             BufferedWriter bw = new BufferedWriter(writer);
-            System.out.println(logFile.length());
             bw.append(message);
             bw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            error(e.getMessage());
+        }
+    }
+
+    private void saveInfoLog() {
+        if(info != null) {
+            saveLog(info);
         }
     }
 
     private void saveWarnLog() {
-        for(WarnLog log : warnings){
-            saveLog(log);
+        if(warning != null) {
+            saveLog(warning);
         }
-        warnings.clear();
     }
 
     private void saveErrorLog() {
-        for(ErrorLog log : errors){
-            saveLog(log);
+        if(error != null){
+            saveLog(error);
         }
-        errors.clear();
     }
 }

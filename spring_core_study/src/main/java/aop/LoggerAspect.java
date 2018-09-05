@@ -3,17 +3,16 @@ package aop;
 import logger.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.util.CollectionUtils;
 
 @Aspect
 public class LoggerAspect {
-
     @After("execution(public void info(String))")
     public void info(JoinPoint joinPoint){
         Logger logger = (Logger)joinPoint.getThis();
-        if(!CollectionUtils.isEmpty(logger.getInfo())) {
-            String message = logger.getInfo().get(logger.getInfo().size() - 1).toString();
+        if(logger.getInfo() != null) {
+            String message = logger.getInfo().toString();
             System.out.print(message);
             logger.save();
         }
@@ -22,16 +21,32 @@ public class LoggerAspect {
     @After("execution(public void warn(String))")
     public void warn(JoinPoint joinPoint){
         Logger logger = (Logger)joinPoint.getThis();
-        if(!CollectionUtils.isEmpty(logger.getWarnings())) {
-            System.out.print(logger.getWarnings().get(logger.getWarnings().size() - 1));
+        if(logger.getWarning() != null) {
+            String message = logger.getWarning().toString();
+            System.out.print(message);
+            logger.save();
         }
     }
 
     @After("execution(public void error(String))")
     public void error(JoinPoint joinPoint){
         Logger logger = (Logger)joinPoint.getThis();
-        if(!CollectionUtils.isEmpty(logger.getErrors())) {
-            System.out.print(logger.getErrors().get(logger.getErrors().size() - 1));
+        if(logger.getWarning() != null) {
+            String message = logger.getError().toString();
+            System.out.print(message);
+            logger.save();
         }
+    }
+
+    @AfterThrowing("within(logger.Logger)")
+    public void infoThrow(JoinPoint joinPoint){
+        System.out.println("###" + joinPoint.toString());
+        Logger logger = (Logger)joinPoint.getThis();
+        logger.error(joinPoint.toString());
+//        if(logger.getInfo() != null) {
+//            String message = logger.getInfo().toString();
+//            System.out.print(message);
+//            logger.save();
+//        }
     }
 }
