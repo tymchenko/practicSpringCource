@@ -134,14 +134,10 @@ public class Logger implements Savable{
         }
         try {
             File logFile = new File(String.format("%s/%s", logDir, fileName));
-            logFile.createNewFile();
-            FileWriter writer = new FileWriter(logFile, false);
+            FileWriter writer = new FileWriter(logFile, true);
             BufferedWriter bw = new BufferedWriter(writer);
-            if(logFile.length() == 0) {
-                bw.write(message);
-            } else {
-                bw.append(message);
-            }
+            System.out.println(logFile.length());
+            bw.append(message);
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
