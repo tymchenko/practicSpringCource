@@ -142,8 +142,6 @@ public class Logger implements Savable{
             } else {
                 bw.append(message);
             }
-
-//            writer.close();
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
