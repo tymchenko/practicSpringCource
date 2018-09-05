@@ -132,8 +132,19 @@ public class Logger implements Savable{
         if(!directory.exists()){
             directory.mkdir();
         }
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(String.format("%s/%s", logDir, fileName)))) {
-            bw.append(message);
+        try {
+            File logFile = new File(String.format("%s/%s", logDir, fileName));
+            logFile.createNewFile();
+            FileWriter writer = new FileWriter(logFile, false);
+            BufferedWriter bw = new BufferedWriter(writer);
+            if(logFile.length() == 0) {
+                bw.write(message);
+            } else {
+                bw.append(message);
+            }
+
+//            writer.close();
+            bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
